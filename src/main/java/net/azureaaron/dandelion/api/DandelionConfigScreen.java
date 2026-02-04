@@ -3,6 +3,7 @@ package net.azureaaron.dandelion.api;
 import java.util.List;
 
 import org.apache.commons.lang3.function.TriFunction;
+import org.jspecify.annotations.Nullable;
 
 import net.azureaaron.dandelion.impl.DandelionConfigScreenImpl;
 import net.minecraft.client.gui.screens.Screen;
@@ -14,7 +15,7 @@ public interface DandelionConfigScreen {
 		return new DandelionConfigScreenImpl<>(manager, screenBuilder);
 	}
 
-	Screen generateScreen(Screen parent, ConfigType configType);
+	Screen generateScreen(@Nullable Screen parent, ConfigType configType);
 
 	//TODO add support for moulconfig social links
 	interface Builder {

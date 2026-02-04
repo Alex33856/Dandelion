@@ -17,4 +17,9 @@ public abstract class ConfigSerializer<T> {
 	public abstract boolean save();
 
 	public abstract boolean load();
+
+	/**
+	 * Performs a deep copy of the {@code source} object.
+	 */
+	public abstract T copyObject(T source);
 }

@@ -12,13 +12,15 @@ import io.github.notenoughupdates.moulconfig.gui.MouseEvent;
 import io.github.notenoughupdates.moulconfig.gui.component.ColorSelectComponent;
 import io.github.notenoughupdates.moulconfig.gui.editors.ComponentEditor;
 import io.github.notenoughupdates.moulconfig.observer.GetSetter;
+import io.github.notenoughupdates.moulconfig.platform.MoulConfigPlatform;
 import io.github.notenoughupdates.moulconfig.processor.ProcessedOption;
+import net.azureaaron.dandelion.Dandelion;
 import net.minecraft.util.ARGB;
 import net.minecraft.util.CommonColors;
 
 public class DandelionColourEditor extends ComponentEditor {
-	private static final MyResourceLocation ALPHA_BUTTON = new MyResourceLocation("dandelion", "textures/gui/button_alpha.png");
-	private static final MyResourceLocation ALPHA_BUTTON_OVERLAY = new MyResourceLocation("dandelion", "textures/gui/button_alpha_overlay.png");
+	private static final MyResourceLocation ALPHA_BUTTON = MoulConfigPlatform.wrap(Dandelion.id("textures/gui/button_alpha.png"));
+	private static final MyResourceLocation ALPHA_BUTTON_OVERLAY = MoulConfigPlatform.wrap(Dandelion.id("textures/gui/button_alpha_overlay.png"));
 	private final GuiComponent component;
 
 	@SuppressWarnings("unchecked")

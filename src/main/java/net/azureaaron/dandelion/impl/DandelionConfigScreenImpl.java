@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.function.TriFunction;
+import org.jspecify.annotations.Nullable;
 
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.ConfigManager;
@@ -26,7 +27,7 @@ public class DandelionConfigScreenImpl<T> implements DandelionConfigScreen {
 		Objects.requireNonNull(screenBuilder, "screenBuilder must not be null");
 
 		DandelionConfigScreenBuilderImpl builder = new DandelionConfigScreenBuilderImpl();
-		screenBuilder.apply(manager.defaults(), manager.instance(), builder);
+		screenBuilder.apply(manager.defaults(), manager.unpatchedInstance(), builder);
 
 		this.title = builder.title;
 		this.categories = builder.categories;
@@ -34,7 +35,7 @@ public class DandelionConfigScreenImpl<T> implements DandelionConfigScreen {
 	}
 
 	@Override
-	public Screen generateScreen(Screen parent, ConfigType configType) {
+	public Screen generateScreen(@Nullable Screen parent, ConfigType configType) {
 		Objects.requireNonNull(configType, "configType must not be null");
 		return switch (configType) {
 			case ConfigType.YACL -> YACLScreenAdapter.generateYaclScreen(this.manager, this.title, this.categories, parent);

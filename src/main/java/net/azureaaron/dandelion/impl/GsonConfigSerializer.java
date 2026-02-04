@@ -36,16 +36,16 @@ public class GsonConfigSerializer<T> extends ConfigSerializer<T> {
 
 	@Override
 	public boolean save() {
-		T instance = this.configManager.instance();
+		T unpatchedInstance = this.configManager.unpatchedInstance();
 
 		//We can't save a null config instance since that would not work at all and shouldn't be done in general
-		if (instance == null) {
+		if (unpatchedInstance == null) {
 			LOGGER.warn("[Dandelion] Cannot save a null instance of {} to {}! Skipping save.", this.configManager.configClass(), this.path);
 			return false;
 		}
 
 		try {
-			String json = this.gson.toJson(instance, this.configManager.configClass());
+			String json = this.gson.toJson(unpatchedInstance, this.configManager.configClass());
 
 			Files.createDirectories(this.path.getParent());
 			Files.writeString(this.path, json, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
@@ -63,7 +63,7 @@ public class GsonConfigSerializer<T> extends ConfigSerializer<T> {
 	public boolean load() {
 		if (!Files.exists(this.path)) {
 			LOGGER.info("[Dandelion] No config found for {} at {}. Initializing and saving default config.", this.configManager.configClass(), this.path);
-			this.configManager.setInstance(this.configManager.createNewConfigInstance());
+			this.configManager.setUnpatchedInstance(this.configManager.createNewConfigInstance());
 			this.save();
 
 			return true;
@@ -73,7 +73,7 @@ public class GsonConfigSerializer<T> extends ConfigSerializer<T> {
 			String config = Files.readString(this.path);
 			T instance = this.gson.fromJson(JsonParser.parseString(config), this.configManager.configClass());
 
-			this.configManager.setInstance(instance);
+			this.configManager.setUnpatchedInstance(instance);
 			LOGGER.info("[Dandelion] Successfully loaded {} from {}.", this.configManager.configClass(), this.path);
 
 			return true;
@@ -82,6 +82,12 @@ public class GsonConfigSerializer<T> extends ConfigSerializer<T> {
 		}
 
 		return false;
+	}
+
+	@Override
+	public T copyObject(T source) {
+		// Copies the object by converting it to JSON and back
+		return this.gson.fromJson(this.gson.toJson(source, this.configManager.configClass()), this.configManager.configClass());
 	}
 
 	protected static GsonBuilder createDefaultGsonBuilder() {

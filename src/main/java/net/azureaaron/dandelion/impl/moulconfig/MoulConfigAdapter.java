@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.stream.Stream;
 
+import org.jspecify.annotations.Nullable;
+
 import io.github.notenoughupdates.moulconfig.gui.GuiContext;
 import io.github.notenoughupdates.moulconfig.gui.GuiElementComponent;
 import io.github.notenoughupdates.moulconfig.gui.MoulConfigEditor;
@@ -38,7 +40,7 @@ public class MoulConfigAdapter {
 		this.configDefinition = new MoulConfigDefinition(title);
 	}
 
-	public Screen generateMoulConfigScreen(List<ConfigCategory> categories, Screen parent, String search) {
+	public Screen generateMoulConfigScreen(List<ConfigCategory> categories, @Nullable Screen parent, String search) {
 		this.generateEditableOptions(categories);
 
 		List<DandelionProcessedCategory> processedCategories = this.generateProcessedCategories(categories);
