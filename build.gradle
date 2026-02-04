@@ -41,7 +41,10 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
+	mappings loom.layered {
+		officialMojangMappings()
+		mappings file("skyblocker-override.tiny")
+	}
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
@@ -52,6 +55,9 @@ dependencies {
 
 	// MoulConfig
 	shadowMe(modCompileOnly("org.notenoughupdates.moulconfig:${project.moulconfig_flavour}:${project.moulconfig_version}"))
+
+	// JSpecify Annotations
+	include implementation("org.jspecify:jspecify:1.0.0")
 }
 
 loom {
