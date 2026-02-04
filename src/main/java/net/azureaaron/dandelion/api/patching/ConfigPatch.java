@@ -22,17 +22,17 @@ public sealed interface ConfigPatch {
 	Codec<List<ConfigPatch>> PATCH_LIST_CODEC = ConfigPatcher.PATCH_ID_MAPPER.codec(Identifier.CODEC).dispatch(ConfigPatch::codec, Function.identity()).listOf();
 
 	/**
-	 * The {@link MapCodec} used to deserialize the patch.
+	 * {@return the {@link MapCodec} used to deserialize the patch}
 	 */
 	MapCodec<? extends ConfigPatch> codec();
 
 	/**
-	 * The path to the field being patched from the root of the config.
+	 * {@return the path to the field being patched from the root of the config}
 	 */
 	String path();
 
 	/**
-	 * The predicates required for the patch to be applied.
+	 * {@return the predicates required for the patch to be applied}
 	 */
 	List<PatchPredicate> predicates();
 
@@ -43,7 +43,7 @@ public sealed interface ConfigPatch {
 		Identifier ID = Dandelion.id("patch/boolean");
 
 		/**
-		 * @return the overridden boolean value
+		 * {@return the overridden boolean value}
 		 */
 		boolean value();
 	}
@@ -55,7 +55,7 @@ public sealed interface ConfigPatch {
 		Identifier ID = Dandelion.id("patch/enum");
 
 		/**
-		 * @return the overridden Enum value
+		 * {@return the overridden Enum value}
 		 */
 		String value();
 	}

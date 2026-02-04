@@ -16,7 +16,7 @@ public interface ConfigManager<T> {
 	}
 
 	/**
-	 * @return the class backing this config
+	 * {@return the class backing this config}
 	 */
 	Class<T> configClass();
 
@@ -37,17 +37,17 @@ public interface ConfigManager<T> {
 	T unpatchedInstance();
 
 	/**
-	 * @return an instance of the {@code configClass} representing the default initialized values
+	 * {@return an instance of the {@code configClass} representing the default initialized values}
 	 */
 	T defaults();
 
 	/**
-	 * @return whether the config saved successfully
+	 * {@return whether the config saved successfully}
 	 */
 	boolean save();
 
 	/**
-	 * @return whether the config loaded successfully
+	 * {@return whether the config loaded successfully}
 	 */
 	boolean load();
 

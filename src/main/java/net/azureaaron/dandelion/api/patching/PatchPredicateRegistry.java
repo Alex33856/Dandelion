@@ -8,7 +8,7 @@ import net.azureaaron.dandelion.impl.patching.ConfigPatcher;
 import net.minecraft.resources.Identifier;
 
 /**
- * Allows users of Dandelion to register their own custom {@code PatchPredicates}.
+ * Allows users of Dandelion to register their own custom {@link PatchPredicate}s.
  */
 public final class PatchPredicateRegistry {
 

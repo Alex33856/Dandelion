@@ -8,7 +8,6 @@ import net.azureaaron.dandelion.impl.moulconfig.MoulConfigDefinition;
 import net.azureaaron.dandelion.impl.moulconfig.MoulConfigOptionEditorAdapter;
 import net.azureaaron.dandelion.impl.yacl.YACLControllerAdapter;
 import org.jetbrains.annotations.ApiStatus;
-import org.jspecify.annotations.Nullable;
 
 public sealed interface Controller<T> permits BooleanController, ColourController, EnumController, NumberController, ItemController, StringController {
 
@@ -17,7 +16,6 @@ public sealed interface Controller<T> permits BooleanController, ColourControlle
 	}
 
 	@ApiStatus.Experimental
-	@Nullable
 	default GuiOptionEditor controllerMoulConfig(Option<T> option, ProcessedOption moulConfigOption, MoulConfigDefinition configDefinition) {
 		return MoulConfigOptionEditorAdapter.createMoulConfigEditor(option, moulConfigOption, configDefinition);
 	}

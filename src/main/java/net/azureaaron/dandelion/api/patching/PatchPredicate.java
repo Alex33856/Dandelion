@@ -14,12 +14,14 @@ import net.minecraft.resources.Identifier;
 public interface PatchPredicate {
 
 	/**
-	 * The {@link MapCodec} used to deserialize the predicate.
+	 * {@return the {@link MapCodec} used to deserialize the predicate}
 	 */
 	MapCodec<? extends PatchPredicate> codec();
 
-	/*
-	 * Tests the predicate.
+	/**
+	 * Evaluates the predicate.
+	 *
+	 * @return {@code true} if the predicate's condition was satisfied, otherwise {@code false}
 	 */
 	boolean test();
 
@@ -32,12 +34,12 @@ public interface PatchPredicate {
 		Identifier ID = Dandelion.id("predicate/date");
 
 		/**
-		 * The start date.
+		 * {@return the start date}
 		 */
 		OptionalLong from();
 
 		/**
-		 * The end date.
+		 * {@return the end date}
 		 */
 		OptionalLong to();
 	}
@@ -51,12 +53,12 @@ public interface PatchPredicate {
 		Identifier ID = Dandelion.id("predicate/minecraft_version");
 
 		/**
-		 * The version of the Minecraft to compare against.
+		 * {@return the version of the Minecraft to compare against}
 		 */
 		String version();
 
 		/**
-		 * The operator used to compare the current Minecraft version against the given Minecraft version.
+		 * {@return the operator used to compare the current Minecraft version against the given Minecraft version}
 		 */
 		ComparisonOperator operator();
 	}
@@ -70,17 +72,17 @@ public interface PatchPredicate {
 		Identifier ID = Dandelion.id("predicate/mod_version");
 
 		/**
-		 * The id of the mod whose version will be compared.
+		 * {@return the id of the mod whose version will be compared}
 		 */
 		String modId();
 
 		/**
-		 * The version of the mod to compare against.
+		 * {@return the version of the mod to compare against}
 		 */
 		SemanticVersion version();
 
 		/**
-		 * The operator used to compare the current mod version against the given mod version.
+		 * {@return the operator used to compare the current mod version against the given mod version}
 		 */
 		ComparisonOperator operator();
 	}
