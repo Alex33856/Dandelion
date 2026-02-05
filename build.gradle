@@ -61,7 +61,7 @@ dependencies {
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/dandelion.classtweaker")
+	accessWidenerPath = file("src/main/resources/dandelion-bp.classtweaker")
 
 	mixin {
 		useLegacyMixinAp = false
@@ -83,7 +83,7 @@ tasks.withType(JavaCompile).configureEach {
 tasks.named("shadowJar").configure {
 	configurations = [project.configurations.shadowMe]
 
-	relocate("io.github.notenoughupdates.moulconfig", "net.azureaaron.dandelion.deps.moulconfig")
+	relocate("io.github.notenoughupdates.moulconfig", "net.azureaaron.dandelion_bp.deps.moulconfig")
 	exclude("fabric.mod.json")
 	exclude("*.accesswidener")
 	exclude("*.classtweaker")
