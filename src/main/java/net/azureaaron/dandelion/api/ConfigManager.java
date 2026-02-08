@@ -52,6 +52,11 @@ public interface ConfigManager<T> {
 	boolean load();
 
 	/**
+	 * Updates the patched instance such that all its values match the unpatched instance.
+	 */
+	void updatePatchedInstance();
+
+	/**
 	 * Replaces the existing set of config patches (if any) and then applies them.
 	 */
 	void setPatches(List<ConfigPatch> patches);

@@ -41,7 +41,8 @@ public class ConfigManagerImpl<T> implements ConfigManager<T> {
 		this.updatePatchedInstance();
 	}
 
-	private void updatePatchedInstance() {
+	@Override
+	public void updatePatchedInstance() {
 		this.instance = this.serializer.copyObject(this.unpatchedInstance);
 		ConfigPatcher.applyPatches(this.instance, this.patches);
 	}
