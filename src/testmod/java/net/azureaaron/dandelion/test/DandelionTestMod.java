@@ -39,7 +39,7 @@ public class DandelionTestMod implements ClientModInitializer {
 			dispatcher.register(ClientCommands.literal("dandelion").executes(context -> {
 				// Open a test configuration GUI
 				Minecraft minecraft = context.getSource().getClient();
-				minecraft.schedule(() -> minecraft.gui.setScreen(TestConfigManager.createGui()));
+				minecraft.schedule(() -> minecraft.setScreen(TestConfigManager.createGui()));
 
 				return Command.SINGLE_SUCCESS;
 			}));
@@ -50,7 +50,7 @@ public class DandelionTestMod implements ClientModInitializer {
 			if (screen instanceof TitleScreen) {
 				List<AbstractWidget> widgets = Screens.getWidgets(screen);
 				AbstractWidget realmsButton = Screens.getWidgets(screen).get(2);
-				SpriteIconButton configButton = SpriteIconButton.builder(Component.literal("Config"), _ -> minecraft.gui.setScreen(TestConfigManager.createGui()), true)
+				SpriteIconButton configButton = SpriteIconButton.builder(Component.literal("Config"), _ -> minecraft.setScreen(TestConfigManager.createGui()), true)
 						.sprite(id("icon/config"), 16, 16)
 						.size(20, 20)
 						.build();

@@ -6,6 +6,7 @@ import net.azureaaron.dandelion.impl.ButtonOptionImpl;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import org.jspecify.annotations.Nullable;
 
 public interface ButtonOption extends Option<Consumer<Screen>> {
 
@@ -15,7 +16,7 @@ public interface ButtonOption extends Option<Consumer<Screen>> {
 
 	Component prompt();
 
-	Consumer<Screen> action();
+	Consumer<@Nullable Screen> action();
 
 	//TODO consider allowing to "gray out" the option
 	interface Builder {

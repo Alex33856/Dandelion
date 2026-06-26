@@ -10,5 +10,5 @@ public interface OptionFlag extends Consumer<Minecraft> {
 	OptionFlag ASSET_RELOAD = Minecraft::delayTextureReload;
 
 	/// When invoked, this flag will reload the game's chunks.
-	OptionFlag RELOAD_CHUNKS = client -> client.levelExtractor.allChanged();
+	OptionFlag RELOAD_CHUNKS = client -> client.levelRenderer.allChanged();
 }
